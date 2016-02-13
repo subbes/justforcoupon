@@ -1,16 +1,15 @@
-// todo: make this function actually work
-(function($){
-   $.fn.offscreen = function() {
-       return true;
-    //  console.log(this.offsetTop);
-    //  return( element.offsetTop > window.innerHeight || (element.offsetHeight + element.offSetTop) < 0 );
-   }; 
-})( jQuery ); // check whether element is outside the viewport
+function offscreen(element){
+   var elem = document.getElementById(element);
+//   console.log(elem.offsetTop);
+//   console.log(window.innerHeight);
+   return( elem.offsetTop > window.innerHeight || (elem.offsetHeight + elem.offSetTop) < 0 );
+} // check whether element is outside the viewport
 
-if(console.log($(".ng-scope").offscreen())){
+if(offscreen("ls-row-3")){
     window.scrollTo(0,document.body.scrollHeight);
-}// scroll to the bottom of the currently loaded offers
-// todo:  loop this as long as footer is outside the viewport - wait for page to load between each loop so we keep calling scrollTop until everything is loaded
+} // if the footer is outside the viewport, scroll
+
+// TODO: loop this until whole page is loaded. Experimented with while(offscreen("ls-row-3")){} but got caught in infy loop. hm.
 
 $(".lt-offer-Clip").not("lt-offer-clipped").each(function(){
     $("span:contains('Add')").not("lt-added").trigger('click');
