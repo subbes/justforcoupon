@@ -1,16 +1,20 @@
 function offscreen(element){
    var elem = document.getElementById(element);
-//   console.log(elem.offsetTop);
-//   console.log(window.innerHeight);
    return( elem.offsetTop > window.innerHeight || (elem.offsetHeight + elem.offSetTop) < 0 );
 } // check whether element is outside the viewport
 
 if(offscreen("ls-row-3")){
     window.scrollTo(0,document.body.scrollHeight);
-   $(".lt-offer-Clip").not("lt-offer-clipped").each(function(){
-       $("span:contains('Add')").not("lt-added").trigger('click');
-     }
-   ); // click each coupon.  this is inefficient.
 } // if the footer is outside the viewport, scroll
+// TODO:  loop this properly to preload page
 
-// TODO: loop this until whole page is loaded. Experimented with while(offscreen("ls-row-3")){} but got caught in infy loop. hm.
+var offers = document.querySelectorAll('.lt-offer-Clip'); // get all the offers in an array
+[].forEach.call(offers, function(el, i) {
+   el.click();
+}); // fuck it, click all of them
+
+// TODO: filter this array further to winnow out already-added offers and avoid clickblasting the page.  
+// HINT:  $("span:contains('Add')").not("lt-added").trigger('click');
+// !el.classList.contains("lt-added")
+
+
