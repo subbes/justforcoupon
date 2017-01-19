@@ -17,31 +17,11 @@ function afterscroll()
    [].forEach.call(offers, function(el, i) {
       el.click();
    }); // fuck it, click all of them
-// TODO: filter this array further to winnow out already-added offers and avoid clickblasting the page.  
-// HINT:  $("span:contains('Add')").not("lt-added").trigger('click');
-// !el.classList.contains("lt-added")
    
-   if(offscreen("copyright_text")){
+   if(counter < 10){
+      counter++;
       scroll();
-   }  // if there's more of the page left, scroll again
-}  // problem with this:  it never actually finishes scrolling, haaaaaaaaaaa
-
+   }  // loop
+}  // scroll 2
+var counter = 0; // limit
 scroll();  // scroll?
-
-/* debugging bits
-var currentNode // let's look at this node
-var ni = document.createNodeIterator(document.body, NodeFilter.SHOW_ELEMENT,
-   function(node) {
-        return node.nodeName.toLowerCase() === 'div' ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-   },
-   false
-); // nodeIterator
-
-
-while(currentNode = ni.nextNode()) {
-   if(currentNode != ""){
-      console.log(currentNode.nodeName);
-      console.log(currentNode);
-   }
-} // iterate the nodes
-*/
