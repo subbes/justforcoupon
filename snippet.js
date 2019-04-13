@@ -13,7 +13,7 @@ function scroll()
 
 function afterscroll()
 {
-   var offers = document.querySelectorAll('.lt-offer-Clip'); // get all the offers in an array
+   var offers = document.querySelectorAll('.grid-coupon-btn'); // get all the offers in an array
    [].forEach.call(offers, function(el, i) {
       el.click();
    }); // fuck it, click all of them
